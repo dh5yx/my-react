@@ -29,7 +29,7 @@ class App extends Component {
   };
   selectMenu(data) {
     console.log(data)
-    console.log(this.props)
+    console.log(this)
 
   }
   render() {
