@@ -1,0 +1,19 @@
+.site-layout .site-layout-background {
+  background: #fff;
+}
+.anticon.trigger {
+  margin-left: 16px;
+}
+.ant-menu-sub.ant-menu-inline {
+  background-color: teal;
+  border-color: transparent;
+}
+.ant-menu-item-selected {
+  background-color: tomato !important;
+}
+.ant-menu-submenu-selected,.ant-menu-submenu-title:hover{
+  color: #fff !important;
+}
+.ant-menu{
+  color: #fff;
+}
