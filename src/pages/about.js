@@ -1,16 +1,11 @@
 import React, { Component } from 'react'
 
-export default class about extends Component {
-    constructor(props){
-        super(props)
-        console.log(this.props)
-    }
-
-    render() {
-        return (
-            <div>
-                关于
-            </div>
-        )
-    }
+const about = function () {
+    return (
+        <div>
+            关于
+        </div>
+    )
 }
+
+export default about
