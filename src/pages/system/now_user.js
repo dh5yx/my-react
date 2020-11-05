@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 
-const home = function () {
+const user_message = function () {
     return (
         <div>
-            首页
+            现有
         </div>
     )
 }
 
-export default home
+export default user_message

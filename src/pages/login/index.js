@@ -69,7 +69,7 @@ export default class logon extends Component {
             <Form.Item>
               <Button
                 danger
-                icon={<AliwangwangFilled />}
+                icon={<AliwangwangFilled  spin/>}
                 type="primary"
                 htmlType="submit"
                 className="login-form-button"

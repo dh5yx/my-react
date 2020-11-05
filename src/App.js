@@ -1,8 +1,12 @@
 import React, { Component } from "react";
-import { Switch, Route, Redirect, HashRouter } from "react-router-dom";
+import { Switch, Route, Redirect, HashRouter, BrowserRouter } from "react-router-dom";
+import loadable from './utils/loadable'
+import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
 
-import Index from "./pages/index/index";
-import Login from "./pages/login/index";
+const Index = loadable(() => import(/* webpackChunkName: 'index' */ './pages/index/index'))
+const Login = loadable(() => import(/* webpackChunkName: 'login' */ './pages/login/index'))
+const View404 = loadable(() => import(/* webpackChunkName: 'view404' */ './pages/Others/404'))
+const View500 = loadable(() => import(/* webpackChunkName: 'view500' */ './pages/Others/500'))
 
 class App extends Component {
   constructor(props) {
@@ -12,13 +16,15 @@ class App extends Component {
   render() {
     return (
       <>
-        <HashRouter>
+        <BrowserRouter>
           <Switch>
             <Redirect exact from="/" to="/index"></Redirect>
             <Route path='/login' component={Login} ></Route>
+            <Route path='/404' component={View404} ></Route>
+            <Route path='/500' component={View500} ></Route>
             <Route component={Index}></Route>
           </Switch>
-        </HashRouter>
+        </BrowserRouter>
       </>
     );
   }
