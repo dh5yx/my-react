@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { connect } from "react-redux"
 import { Form, Input, Button, message, notification } from "antd";
 import {
   UserOutlined,
@@ -8,7 +8,10 @@ import {
 } from "@ant-design/icons";
 import "./index.scss";
 
-export default class logon extends Component {
+
+import {changeUserInfo} from "../../store/store"
+
+class logon extends Component {
   constructor() {
     super();
     this.state = {
@@ -17,12 +20,13 @@ export default class logon extends Component {
   }
   onFinish = (values) => {
     console.log(values)
+    this.props.dispatch(changeUserInfo({name:'hong',age:30}))
     this.setState({ loading: true })
-    localStorage.setItem("token",'token')
+    localStorage.setItem("token", 'token')
     setTimeout(() => {
       this.setState({ loading: false })
       message.success('登陆成功')
-      this.props.history.replace("/index")
+      // this.props.history.replace("/index")
     }, 2000);
   };
   componentDidMount() {
@@ -32,6 +36,8 @@ export default class logon extends Component {
       duration: null,
       description: '账号  密码随意'
     })
+
+    console.log(this)
   }
   componentWillUnmount() {
     notification.destroy()
@@ -46,10 +52,13 @@ export default class logon extends Component {
             name="normal_login"
             className="login-form"
             onFinish={this.onFinish}
+            colon={false}
           >
             <Form.Item
+              label='用户名'
               name="username"
               rules={[{ required: true, message: "请输入用户名!" }]}
+             
             >
               <Input
                 prefix={<UserOutlined className="site-form-item-icon" />}
@@ -58,6 +67,7 @@ export default class logon extends Component {
             </Form.Item>
             <Form.Item
               name="password"
+              initialValue={this.props.age}
               rules={[{ required: true, message: "请输入密码!" }]}
             >
               <Input
@@ -69,7 +79,7 @@ export default class logon extends Component {
             <Form.Item>
               <Button
                 danger
-                icon={<AliwangwangFilled  spin/>}
+                icon={<AliwangwangFilled spin />}
                 type="primary"
                 htmlType="submit"
                 className="login-form-button"
@@ -85,3 +95,10 @@ export default class logon extends Component {
     );
   }
 }
+function getstore(store) {
+  return {
+    name: store.name,
+    age: store.age
+  }
+}
+export default connect(getstore)(logon)

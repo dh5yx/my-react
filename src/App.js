@@ -3,6 +3,9 @@ import { Switch, Route, Redirect, HashRouter, BrowserRouter } from "react-router
 import loadable from './utils/loadable'
 import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
 
+import store from "./store/store"
+import { Provider } from "react-redux"
+
 const Index = loadable(() => import(/* webpackChunkName: 'index' */ './pages/index/index'))
 const Login = loadable(() => import(/* webpackChunkName: 'login' */ './pages/login/index'))
 const View404 = loadable(() => import(/* webpackChunkName: 'view404' */ './pages/Others/404'))
@@ -15,7 +18,7 @@ class App extends Component {
   }
   render() {
     return (
-      <>
+      <Provider store={store}>
         <BrowserRouter>
           <Switch>
             <Redirect exact from="/" to="/index"></Redirect>
@@ -25,7 +28,7 @@ class App extends Component {
             <Route component={Index}></Route>
           </Switch>
         </BrowserRouter>
-      </>
+      </Provider>
     );
   }
 }
