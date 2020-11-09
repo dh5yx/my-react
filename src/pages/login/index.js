@@ -9,7 +9,6 @@ import {
 import "./index.scss";
 
 
-import {changeUserInfo} from "../../store/store"
 
 class logon extends Component {
   constructor() {
@@ -20,13 +19,12 @@ class logon extends Component {
   }
   onFinish = (values) => {
     console.log(values)
-    this.props.dispatch(changeUserInfo({name:'hong',age:30}))
     this.setState({ loading: true })
     localStorage.setItem("token", 'token')
     setTimeout(() => {
       this.setState({ loading: false })
       message.success('登陆成功')
-      // this.props.history.replace("/index")
+      this.props.history.replace("/index")
     }, 2000);
   };
   componentDidMount() {
