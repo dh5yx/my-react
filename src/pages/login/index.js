@@ -8,8 +8,7 @@ import {
 } from "@ant-design/icons";
 import "./index.scss";
 
-
-
+import { login } from "../../store/action"
 class logon extends Component {
   constructor() {
     super();
@@ -17,15 +16,17 @@ class logon extends Component {
       loading: false
     };
   }
-  onFinish = (values) => {
-    console.log(values)
+  onFinish = async (values) => {
     this.setState({ loading: true })
-    localStorage.setItem("token", 'token')
-    setTimeout(() => {
-      this.setState({ loading: false })
-      message.success('登陆成功')
-      this.props.history.replace("/index")
-    }, 2000);
+    // let data = await user.login()
+    // this.setState({ loading: false })
+    // message.success('登陆成功')
+    // this.props.dispatch({ type: 'login', token: data.token })
+    // this.props.history.replace("/index")
+
+    this.props.dispatch(login(values, this.props.history))
+
+
   };
   componentDidMount() {
     notification.open({
@@ -35,11 +36,9 @@ class logon extends Component {
       description: '账号  密码随意'
     })
 
-    console.log(this)
   }
   componentWillUnmount() {
     notification.destroy()
-    this.timer && clearTimeout(this.timer)
   }
   render() {
     return (
@@ -54,9 +53,10 @@ class logon extends Component {
           >
             <Form.Item
               label='用户名'
+              initialValue={this.props.name}
               name="username"
               rules={[{ required: true, message: "请输入用户名!" }]}
-             
+
             >
               <Input
                 prefix={<UserOutlined className="site-form-item-icon" />}
@@ -64,6 +64,7 @@ class logon extends Component {
               />
             </Form.Item>
             <Form.Item
+              label='年龄'
               name="password"
               initialValue={this.props.age}
               rules={[{ required: true, message: "请输入密码!" }]}
@@ -93,10 +94,10 @@ class logon extends Component {
     );
   }
 }
-function getstore(store) {
+function getstore({ userReducer }) {
   return {
-    name: store.name,
-    age: store.age
+    name: userReducer.name,
+    age: userReducer.age
   }
 }
 export default connect(getstore)(logon)

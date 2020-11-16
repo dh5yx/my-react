@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Layout, Menu, Breadcrumb } from "antd";
-import { Switch, Route, HashRouter, Link ,BrowserRouter} from 'react-router-dom'
-import Header from "./header"
+import { Switch, Route, HashRouter, Link, BrowserRouter } from 'react-router-dom'
+import Header from "../../components/header"
 import "./index.css"
 import routes from "../../routes/routes"
 import menuList from "../../routes/menus"
@@ -14,7 +14,6 @@ export default class home extends Component {
             rootSubmenuKeys: [],
             selectedKeys: [],
             openKeys: [],
-            BreadcrumbList: null
         }
     }
     componentDidMount() {
@@ -32,7 +31,6 @@ export default class home extends Component {
     }
 
     // 处理 pathname
-
     getOpenKeys = string => {
         console.log(string)
         let newStr = '',
@@ -69,8 +67,7 @@ export default class home extends Component {
     menuClick = (v) => {
         this.props.history.push(v.key)
         this.setState({
-            selectedKeys: [v.key],
-            BreadcrumbList: v.keyPath
+            selectedKeys: [v.key]
         })
     }
     // 菜单展开回调
@@ -85,25 +82,21 @@ export default class home extends Component {
         }
     };
 
-    /* 登出 */
-    out = () => {
-        localStorage.clear()
-        this.props.history.replace("/login")
-    }
+
     /* slide的响应式断电处触发 */
     onBreakpoint = (val) => {
         this.setState({ collapsed: val })
     }
 
     render() {
-        const { BreadcrumbList } = this.state
+        let { pathname } = this.props.location
         return (
             <>
                 <Layout style={{ height: "100vh" }} >
 
                     <Layout.Sider onBreakpoint={this.onBreakpoint} onCollapse={this.onCollapse} breakpoint="lg" trigger={null} collapsible collapsed={this.state.collapsed} style={{ backgroundColor: 'teal' }}>
 
-                        <Menu onOpenChange={this.onOpenChange} openKeys={this.state.openKeys} selectedKeys={this.state.selectedKeys} onClick={this.menuClick} theme="light" mode="inline" defaultSelectedKeys={["1"]} style={{ backgroundColor: 'teal', color: '#fff', borderColor: 'teal' }}>
+                        <Menu onOpenChange={this.onOpenChange} openKeys={this.state.openKeys} selectedKeys={pathname} onClick={this.menuClick} theme="light" mode="inline" defaultSelectedKeys={["1"]} style={{ backgroundColor: 'teal', color: '#fff', borderColor: 'teal' }}>
                             {this.renderMenu(this.state.menu)}
                         </Menu>
 
@@ -111,16 +104,19 @@ export default class home extends Component {
 
 
                     <Layout className="site-layout">
-                        <Header collapsed={this.state.collapsed} show={this.toggle} out={this.out}></Header>
+                        <Layout.Header className="site-layout-background" style={{ padding: 0, border: '1px solid red', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 20px' }}>
+                            <Header collapsed={this.state.collapsed} show={this.toggle} ></Header>
+                        </Layout.Header>
+
                         <Layout.Content
                             className="site-layout-background"
                             style={{ border: '1px solid red', margin: '40px 20px 20px' }}
                         >
-                                <Switch>
-                                    {routes.map(v => {
-                                        return <Route key={v.path} component={v.component} path={v.path} exact={v.exact}></Route>
-                                    })}
-                                </Switch>
+                            <Switch>
+                                {routes.map(v => {
+                                    return <Route key={v.path} component={v.component} path={v.path} exact={v.exact}></Route>
+                                })}
+                            </Switch>
 
                         </Layout.Content>
                         <Layout.Footer style={{ border: '1px solid red' }}>

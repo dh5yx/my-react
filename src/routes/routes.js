@@ -11,12 +11,15 @@ const HistoryUser = loadable(() => import(/* webpackChunkName: 'HistoryUser' */ 
 
 const From = loadable(() => import(/* webpackChunkName: 'from' */ '../pages/form/form'))
 
+const Hook = loadable(() => import(/* webpackChunkName: 'hook' */ '../pages/hook'))
+
 
 const routes = [
     { path: '/index', component: Main, exact: false },
     { path: '/about', component: About, exact: false },
     { path: '/news', component: News, exact: false },
-    { path: '/form', component: From, exact: false },
+    { path: '/input_message/form', component: From, exact: false },
+    { path: '/hook', component: Hook, exact: false },
 
     /* 系统管理 */
     { path: '/system/user/history', component: HistoryUser, exact: false },
