@@ -32,7 +32,6 @@ export default class home extends Component {
 
     // 处理 pathname
     getOpenKeys = string => {
-        console.log(string)
         let newStr = '',
             newArr = [],
             arr = string.split('/').map(i => '/' + i)
@@ -40,7 +39,6 @@ export default class home extends Component {
             newStr += arr[i]
             newArr.push(newStr)
         }
-        console.log(newArr)
         return newArr
     }
     /* 渲染菜单 */
