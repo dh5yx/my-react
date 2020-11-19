@@ -13,6 +13,7 @@ const From = loadable(() => import(/* webpackChunkName: 'from' */ '../pages/form
 
 const Hook = loadable(() => import(/* webpackChunkName: 'hook' */ '../pages/hook'))
 
+const Other = loadable(() => import(/* webpackChunkName: 'hook' */ '../pages/Others/other'))
 
 const routes = [
     { path: '/index', component: Main, exact: false },
@@ -20,6 +21,7 @@ const routes = [
     { path: '/news', component: News, exact: false },
     { path: '/input_message/form', component: From, exact: false },
     { path: '/hook', component: Hook, exact: false },
+    { path: '/ohter', component: Other, exact: false },
 
     /* 系统管理 */
     { path: '/system/user/history', component: HistoryUser, exact: false },

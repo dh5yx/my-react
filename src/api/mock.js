@@ -1,4 +1,4 @@
-import Mock from "mockjs";
+// import Mock from "mockjs";
 Mock.mock("http://127.0.0.1:1234/menu", /post|get/i, {
   // /post|get/i 匹配post和get模式 也可以用'post'或'get'
   // 属性 list 的值是一个数组，其中含有 1 到 10 个元素
