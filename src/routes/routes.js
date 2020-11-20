@@ -21,7 +21,7 @@ const routes = [
     { path: '/news', component: News, exact: false },
     { path: '/input_message/form', component: From, exact: false },
     { path: '/hook', component: Hook, exact: false },
-    { path: '/ohter', component: Other, exact: false },
+    { path: '/other', component: Other, exact: false },
 
     /* 系统管理 */
     { path: '/system/user/history', component: HistoryUser, exact: false },
