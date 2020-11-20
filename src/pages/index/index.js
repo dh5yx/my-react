@@ -29,6 +29,11 @@ export default class home extends Component {
         }
 
     }
+    componentDidUpdate() {
+        if (!localStorage.getItem('token')) {
+            this.props.history.push('/login')
+        }
+    }
 
     // 处理 pathname
     getOpenKeys = string => {

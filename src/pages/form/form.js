@@ -10,7 +10,9 @@ class Demo extends Component {
   constructor() {
     super()
     this.myRef = React.createRef();
-
+    this.state = {
+      inputValue:'123'
+    }
   }
   logref = () => {
     console.log(this.myRef.current.value)
@@ -26,6 +28,10 @@ class Demo extends Component {
         <Button onClick={this.changeUserInfo}>改变redux里userInfo数据</Button>
         <Divider type='horizontal' />
         <Button>获取redux里componyInfo数据</Button>公司名字:{comName} 公司地址:{adress} 公司规模:{personNum}人
+        <Divider type='horizontal' />
+
+        <input type="text" defaultValue={this.state.inputValue} />
+
       </>
     );
   }
