@@ -29,4 +29,5 @@ export default [
 
     },
     { title: 'hook', icon: <BehanceCircleFilled />, path: '/hook', children: [] },
+    { title: 'other', icon: <BehanceCircleFilled />, path: '/other', children: [] },
 ]
